@@ -59,22 +59,31 @@ router.get("/:productId", (req, res, next) => {
       } else {
         res
           .status(404)
-          .json({ message: "No valid entry found for provided ID" });
+          .json({
+            message: "No valid entry found for provided ID"
+          });
       }
     })
     .catch(err => {
       console.log(err);
-      res.status(500).json({ error: err });
+      res.status(500).json({
+        error: err
+      });
     });
 });
 
+//update products
 router.patch("/:productId", (req, res, next) => {
   const id = req.params.productId;
   const updateOps = {};
   for (const ops of req.body) {
     updateOps[ops.propName] = ops.value;
   }
-  Product.update({ _id: id }, { $set: updateOps })
+  Product.update({
+      _id: id
+    }, {
+      $set: updateOps
+    })
     .exec()
     .then(result => {
       console.log(result);
@@ -88,9 +97,12 @@ router.patch("/:productId", (req, res, next) => {
     });
 });
 
+// delete products
 router.delete("/:productId", (req, res, next) => {
   const id = req.params.productId;
-  Product.remove({ _id: id })
+  Product.remove({
+      _id: id
+    })
     .exec()
     .then(result => {
       res.status(200).json(result);
