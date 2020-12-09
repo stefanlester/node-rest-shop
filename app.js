@@ -7,7 +7,9 @@ const mongoose = require('mongoose')
 const productRoutes = require('./api/routes/product')
 const orderRoutes = require('./api/routes/orders')
 
-mongoose.connect("mongodb://localhost/3000", { useNewUrlParser: true }); //hmm
+mongoose.connect("mongodb://localhost/3000", {useMongoClient:true}); //hmm
+
+mongoose.Promise = global.Promise;
 
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({extended: false}))
