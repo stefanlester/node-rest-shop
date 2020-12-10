@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken")
 
 const User = require("../models/user");
 
@@ -73,7 +74,7 @@ router.post("/login", (req, res, next) => {
             },
             process.env.JWT_KEY,
             {
-                expiresIn: "1h"
+                expiresIn: "1h"  // token expires in an hour
             }
           );
           return res.status(200).json({
