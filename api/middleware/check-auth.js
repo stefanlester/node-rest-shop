@@ -1,10 +1,3 @@
-/* JWT ROUTE PROTECTION */
-// Check Auth to prevent unauthorized access
-// this file verifies incoming tokens from jwt
-
-/**
- * STATELESS AUTHENTICATION
- */
 const jwt = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {
